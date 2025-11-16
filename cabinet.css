@@ -1,0 +1,864 @@
+/* ============================================
+   FITVIBE CABINET PAGE - STYLESHEET
+   ============================================ */
+
+/* Сброс стилей и базовые настройки */
+* {
+    box-sizing: border-box;
+}
+
+/* Основные стили для body */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ===== HEADER (Шапка сайта) ===== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, rgb(102,102,227) 0%, rgb(80,80,200) 100%);
+    padding: 20px 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header__menu-logo {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.header__logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    transition: transform 0.3s ease;
+}
+
+.header__logo a:hover {
+    transform: scale(1.05);
+}
+
+.header__menu .header__list {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header__menu .header__list a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 0;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.header__menu .header__list a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+.header__menu .header__list a:hover::after {
+    width: 100%;
+}
+
+.header__menu .header__list a:hover {
+    opacity: 0.9;
+}
+
+.header__user {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header__user-name {
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.header__logout {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background-color: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.3);
+    transition: all 0.3s ease;
+}
+
+.header__logout:hover {
+    background-color: rgba(255,255,255,0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* ===== CABINET CONTAINER (Основной контейнер личного кабинета) ===== */
+/* Контейнер, объединяющий боковую панель и основной контент */
+.cabinet-container {
+    display: flex; /* Flexbox для размещения sidebar и main-content в ряд */
+    min-height: calc(100vh - 200px); /* Минимальная высота: высота экрана минус шапка и футер */
+    padding: 0;
+}
+
+/* ===== SIDEBAR (Боковая панель навигации) ===== */
+/* Боковая панель с профилем пользователя и меню навигации */
+.sidebar {
+    width: 280px; /* Фиксированная ширина боковой панели */
+    background: linear-gradient(135deg, #102A60 0%, #1a3a7a 100%); /* Темный градиентный фон */
+    color: white;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение элементов */
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1); /* Тень справа для глубины */
+    position: sticky; /* Фиксируется при прокрутке */
+    top: 80px; /* Отступ сверху (высота шапки) */
+    height: calc(100vh - 80px); /* Высота: высота экрана минус шапка */
+    overflow-y: auto; /* Вертикальная прокрутка при переполнении */
+}
+
+.sidebar__profile {
+    padding: 0 30px 30px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.sidebar__avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid rgba(255,255,255,0.2);
+}
+
+.sidebar__avatar img {
+    width: 70px;
+    height: 70px;
+}
+
+.sidebar__name {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 10px;
+    color: white;
+}
+
+.sidebar__email {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    margin: 0;
+}
+
+.sidebar__nav {
+    flex: 1;
+}
+
+.sidebar__menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar__item {
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar__link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 30px;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.sidebar__link img {
+    width: 24px;
+    height: 24px;
+    opacity: 0.8;
+}
+
+.sidebar__link:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+    border-left-color: rgb(102,102,227);
+}
+
+.sidebar__link:hover img {
+    opacity: 1;
+}
+
+.sidebar__item--active .sidebar__link {
+    background-color: rgba(102,102,227,0.3);
+    color: white;
+    border-left-color: rgb(102,102,227);
+}
+
+.sidebar__item--active .sidebar__link img {
+    opacity: 1;
+}
+
+/* ===== MAIN CONTENT (Основной контент) ===== */
+/* Основная область контента личного кабинета */
+.main-content {
+    flex: 1; /* Занимает все оставшееся пространство после sidebar */
+    padding: 40px;
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение секций */
+    gap: 30px; /* Расстояние между секциями */
+}
+
+/* ===== WELCOME SECTION (Приветственная секция) ===== */
+/* Баннер с приветствием пользователя */
+.welcome-section {
+    background: linear-gradient(135deg, rgb(102,102,227) 0%, rgb(80,80,200) 100%); /* Градиентный фон */
+    padding: 40px;
+    border-radius: 20px;
+    color: white;
+    box-shadow: 0 5px 20px rgba(102,102,227,0.3); /* Цветная тень */
+}
+
+.welcome-title {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 10px;
+    color: white;
+}
+
+.welcome-subtitle {
+    font-size: 18px;
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* ===== STATS SECTION (Секция статистики) ===== */
+/* Контейнер для карточек статистики - использует flexbox для размещения карточек в ряд */
+.stats-section {
+    display: flex;
+    gap: 20px; /* Расстояние между карточками */
+    flex-wrap: wrap; /* Перенос карточек на новую строку при нехватке места */
+}
+
+/* Карточка статистики - отображает одно значение (калории, тренировки и т.д.) */
+.stats-card {
+    flex: 1 1 200px; /* Минимальная ширина 200px, растягивается равномерно */
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    display: flex;
+    align-items: center; /* Вертикальное выравнивание содержимого по центру */
+    gap: 20px; /* Расстояние между иконкой и текстом */
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08); /* Мягкая тень для глубины */
+    transition: all 0.3s ease; /* Плавная анимация при изменении свойств */
+    border: 1px solid rgba(102,102,227,0.1); /* Легкая цветная рамка */
+}
+
+/* Эффект при наведении на карточку статистики */
+.stats-card:hover {
+    transform: translateY(-5px); /* Поднимается вверх */
+    box-shadow: 0 8px 25px rgba(102,102,227,0.2); /* Усиленная тень */
+}
+
+.stats-card__icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, rgba(102,102,227,0.1), rgba(80,80,200,0.1));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.stats-card__icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.stats-card__content {
+    flex: 1;
+}
+
+.stats-card__value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #102A60;
+    margin: 0 0 5px;
+    line-height: 1;
+}
+
+.stats-card__label {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+/* ===== CONTENT ROW (Строка контента) ===== */
+/* Контейнер для размещения секций в ряд (например, тренировки и прогресс) */
+.content-row {
+    display: flex;
+    gap: 30px; /* Расстояние между секциями */
+    flex-wrap: wrap; /* Перенос секций на новую строку при нехватке места */
+}
+
+/* Секции внутри content-row занимают равное пространство */
+.content-row > section {
+    flex: 1 1 400px; /* Минимальная ширина 400px, растягиваются равномерно */
+}
+
+/* ===== SECTION TITLE (Заголовок секции) ===== */
+/* Общий стиль для заголовков секций (Ближайшие тренировки, Прогресс и т.д.) */
+.section-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #102A60; /* Темно-синий цвет */
+    margin: 0 0 25px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid rgb(102,102,227); /* Цветная линия под заголовком */
+}
+
+/* ===== WORKOUTS SECTION (Секция тренировок) ===== */
+/* Контейнер секции с ближайшими тренировками */
+.workouts-section {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08); /* Мягкая тень */
+}
+
+/* Список карточек тренировок - вертикальное расположение */
+.workouts-list {
+    display: flex;
+    flex-direction: column; /* Карточки располагаются вертикально */
+    gap: 20px; /* Расстояние между карточками */
+}
+
+/* Карточка тренировки - содержит дату, информацию и кнопку "Начать" */
+.workout-card {
+    display: flex;
+    align-items: center; /* Вертикальное выравнивание элементов */
+    gap: 20px; /* Расстояние между элементами карточки */
+    padding: 20px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); /* Легкий градиент */
+    border-radius: 15px;
+    border: 1px solid rgba(102,102,227,0.1); /* Легкая цветная рамка */
+    transition: all 0.3s ease; /* Плавная анимация */
+}
+
+/* Эффект при наведении на карточку тренировки */
+.workout-card:hover {
+    transform: translateX(5px); /* Смещение вправо */
+    box-shadow: 0 5px 20px rgba(102,102,227,0.15); /* Усиленная тень */
+    border-color: rgba(102,102,227,0.3); /* Более яркая рамка */
+}
+
+.workout-card__date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+    padding: 15px;
+    background: linear-gradient(135deg, rgba(102,102,227,0.1), rgba(80,80,200,0.1));
+    border-radius: 12px;
+}
+
+.workout-card__day {
+    font-size: 14px;
+    font-weight: 600;
+    color: #102A60;
+    margin-bottom: 5px;
+}
+
+.workout-card__time {
+    font-size: 18px;
+    font-weight: 700;
+    color: rgb(102,102,227);
+}
+
+.workout-card__info {
+    flex: 1;
+}
+
+.workout-card__title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #102A60;
+    margin: 0 0 8px;
+}
+
+.workout-card__description {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 10px;
+}
+
+.workout-card__meta {
+    display: flex;
+    gap: 15px;
+    font-size: 13px;
+}
+
+.workout-card__duration,
+.workout-card__difficulty {
+    padding: 4px 12px;
+    background: rgba(102,102,227,0.1);
+    border-radius: 12px;
+    color: rgb(102,102,227);
+    font-weight: 500;
+}
+
+.workout-card__btn {
+    padding: 12px 25px;
+    background: linear-gradient(135deg, rgb(102,102,227) 0%, rgb(80,80,200) 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(102,102,227,0.3);
+    white-space: nowrap;
+}
+
+.workout-card__btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102,102,227,0.4);
+}
+
+/* ===== PROGRESS SECTION (Секция прогресса) ===== */
+/* Контейнер секции с прогрессом пользователя (вес, цели, мышечная масса) */
+.progress-section {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08); /* Мягкая тень */
+}
+
+/* Контейнер карточек прогресса - вертикальное расположение */
+.progress-cards {
+    display: flex;
+    flex-direction: column; /* Карточки располагаются вертикально */
+    gap: 20px; /* Расстояние между карточками */
+}
+
+.progress-card {
+    padding: 20px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 15px;
+    border: 1px solid rgba(102,102,227,0.1);
+}
+
+.progress-card__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #102A60;
+    margin: 0 0 15px;
+}
+
+.progress-card__value {
+    font-size: 32px;
+    font-weight: 700;
+    color: rgb(102,102,227);
+    margin: 0 0 10px;
+}
+
+.progress-card__change {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.progress-card__change-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #102A60;
+}
+
+.progress-card__change-label {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Контейнер прогресс-бара - фоновая полоса */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(102,102,227,0.1); /* Светлый фон */
+    border-radius: 4px;
+    overflow: hidden; /* Скрывает переполнение закругленных углов */
+}
+
+/* Заполненная часть прогресс-бара - визуализирует процент прогресса */
+.progress-bar__fill {
+    height: 100%;
+    background: linear-gradient(90deg, rgb(102,102,227), rgb(80,80,200)); /* Градиентный фон */
+    border-radius: 4px;
+    transition: width 0.3s ease; /* Плавное изменение ширины */
+}
+
+/* ===== RECENT SECTION (Секция последних тренировок) ===== */
+/* Контейнер секции с историей завершенных тренировок */
+.recent-section {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08); /* Мягкая тень */
+}
+
+/* Список последних тренировок - вертикальное расположение */
+.recent-list {
+    display: flex;
+    flex-direction: column; /* Элементы располагаются вертикально */
+    gap: 15px; /* Расстояние между элементами */
+}
+
+.recent-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 15px;
+    border: 1px solid rgba(102,102,227,0.1);
+    transition: all 0.3s ease;
+}
+
+.recent-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 3px 15px rgba(102,102,227,0.1);
+}
+
+.recent-item__icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, rgba(102,102,227,0.1), rgba(80,80,200,0.1));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.recent-item__icon img {
+    width: 30px;
+    height: 30px;
+}
+
+.recent-item__content {
+    flex: 1;
+}
+
+.recent-item__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #102A60;
+    margin: 0 0 5px;
+}
+
+.recent-item__date {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+.recent-item__badge {
+    padding: 6px 15px;
+    background: rgba(76, 175, 80, 0.1);
+    border-radius: 15px;
+    flex-shrink: 0;
+}
+
+.recent-item__badge span {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4CAF50;
+}
+
+/* ===== NUTRITION SECTION (Секция питания) ===== */
+/* Контейнер секции с информацией о питании пользователя */
+.nutrition-section {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08); /* Мягкая тень */
+}
+
+/* Контейнер карточек приемов пищи - вертикальное расположение */
+.nutrition-cards {
+    display: flex;
+    flex-direction: column; /* Карточки располагаются вертикально */
+    gap: 15px; /* Расстояние между карточками */
+    margin-bottom: 20px; /* Отступ снизу перед итоговой информацией */
+}
+
+.nutrition-card {
+    padding: 20px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 15px;
+    border: 1px solid rgba(102,102,227,0.1);
+}
+
+.nutrition-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.nutrition-card__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #102A60;
+    margin: 0;
+}
+
+.nutrition-card__calories {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(102,102,227);
+    padding: 5px 12px;
+    background: rgba(102,102,227,0.1);
+    border-radius: 12px;
+}
+
+.nutrition-card__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nutrition-card__list li {
+    font-size: 14px;
+    color: #666;
+    padding-left: 20px;
+    position: relative;
+}
+
+.nutrition-card__list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: rgb(102,102,227);
+    font-weight: bold;
+}
+
+.nutrition-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(102,102,227,0.1), rgba(80,80,200,0.1));
+    border-radius: 15px;
+    border: 1px solid rgba(102,102,227,0.2);
+}
+
+.nutrition-total__label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #102A60;
+}
+
+.nutrition-total__value {
+    font-size: 18px;
+    font-weight: 700;
+    color: rgb(102,102,227);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: linear-gradient(135deg, #102A60 0%, #1a3a7a 100%);
+    color: white;
+    text-align: center;
+    padding: 50px 20px 30px;
+    font-size: 14px;
+    margin-top: 40px;
+}
+
+.footer p {
+    margin: 10px 0;
+    opacity: 0.9;
+}
+
+.footer p:first-child {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.footer p:last-child {
+    margin-top: 20px;
+    opacity: 0.7;
+    font-size: 12px;
+}
+
+/* ===== RESPONSIVE (Адаптивный дизайн) ===== */
+/* Медиа-запросы для адаптации под различные размеры экранов */
+
+/* Стили для планшетов и небольших экранов (до 1024px) */
+@media (max-width: 1024px) {
+    /* Контейнер кабинета переключается на вертикальную компоновку */
+    .cabinet-container {
+        flex-direction: column; /* Боковая панель и контент располагаются вертикально */
+    }
+
+    /* Боковая панель занимает всю ширину и становится горизонтальной */
+    .sidebar {
+        width: 100%;
+        position: relative; /* Убираем sticky позиционирование */
+        top: 0;
+        height: auto; /* Автоматическая высота */
+        padding: 20px 0;
+    }
+
+    /* Меню боковой панели становится горизонтальным с прокруткой */
+    .sidebar__menu {
+        flex-direction: row; /* Пункты меню в ряд */
+        overflow-x: auto; /* Горизонтальная прокрутка при переполнении */
+        padding: 0 20px;
+    }
+
+    .sidebar__item {
+        flex-shrink: 0;
+    }
+
+    .sidebar__link {
+        padding: 12px 20px;
+        white-space: nowrap;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .content-row {
+        flex-direction: column;
+    }
+
+    .content-row > section {
+        flex: 1 1 100%;
+    }
+}
+
+/* Стили для планшетов и мобильных устройств (до 768px) */
+@media (max-width: 768px) {
+    /* Уменьшаем отступы в шапке и разрешаем перенос элементов */
+    .header {
+        padding: 15px 20px;
+        flex-wrap: wrap; /* Элементы могут переноситься на новую строку */
+    }
+
+    /* Уменьшаем расстояние между логотипом и меню */
+    .header__menu-logo {
+        gap: 20px;
+        flex-wrap: wrap; /* Разрешаем перенос */
+    }
+
+    .header__menu .header__list {
+        gap: 15px;
+        font-size: 14px;
+    }
+
+    .header__user {
+        gap: 10px;
+    }
+
+    .header__user-name {
+        font-size: 14px;
+    }
+
+    .header__logout {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    .welcome-title {
+        font-size: 28px;
+    }
+
+    .welcome-subtitle {
+        font-size: 16px;
+    }
+
+    .stats-section {
+        flex-direction: column;
+    }
+
+    .stats-card {
+        flex: 1 1 100%;
+    }
+
+    .workout-card {
+        flex-wrap: wrap;
+    }
+
+    .workout-card__date {
+        min-width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+/* Стили для маленьких мобильных устройств (до 480px) */
+@media (max-width: 480px) {
+    /* Скрываем основное меню навигации в шапке для экономии места */
+    .header__menu {
+        display: none;
+    }
+
+    /* Уменьшаем отступы в основном контенте */
+    .main-content {
+        padding: 15px;
+    }
+
+    .welcome-section {
+        padding: 25px;
+    }
+
+    .welcome-title {
+        font-size: 24px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+
+    .workout-card__btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+

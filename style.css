@@ -1,0 +1,634 @@
+/* ============================================
+   FITVIBE LANDING PAGE - STYLESHEET
+   ============================================ */
+
+/* Сброс стилей и базовые настройки */
+* {
+    box-sizing: border-box; /* Учитывает padding и border в общей ширине элемента */
+}
+
+/* Основные стили для body */
+body {
+    margin: 0; /* Убираем отступы по умолчанию */
+    font-family: 'Roboto', sans-serif; /* Основной шрифт */
+    background-color: #f5f7fa; /* Светло-серый фон страницы */
+    color: #333; /* Цвет текста по умолчанию */
+    line-height: 1.6; /* Межстрочный интервал для лучшей читаемости */
+}
+
+/* ===== HEADER (Шапка сайта) ===== */
+.header {
+    display: flex;
+    justify-content: space-between; /* Логотип слева, кнопки справа */
+    align-items: center; /* Вертикальное выравнивание по центру */
+    background: linear-gradient(135deg, rgb(102,102,227) 0%, rgb(80,80,200) 100%); /* Градиентный фон */
+    padding: 20px 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Тень для глубины */
+    position: sticky; /* Фиксируется при прокрутке */
+    top: 0;
+    z-index: 1000; /* Поверх других элементов */
+}
+
+/* Контейнер для логотипа и меню */
+.header__menu-logo {
+    display: flex;
+    align-items: center;
+    gap: 50px; /* Расстояние между логотипом и меню */
+}
+
+/* Стили для логотипа */
+.header__logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px; /* Уменьшаем расстояние между буквами */
+    transition: transform 0.3s ease; /* Плавная анимация */
+}
+
+/* Эффект увеличения при наведении на логотип */
+.header__logo a:hover {
+    transform: scale(1.05);
+}
+
+/* Навигационное меню */
+.header__menu .header__list {
+    display: flex;
+    gap: 30px; /* Расстояние между пунктами меню */
+    list-style: none; /* Убираем маркеры списка */
+    margin: 0;
+    padding: 0;
+}
+
+/* Стили для ссылок в меню */
+.header__menu .header__list a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 0;
+    position: relative; /* Для псевдоэлемента ::after */
+    transition: all 0.3s ease;
+}
+
+/* Анимированное подчеркивание под ссылками */
+.header__menu .header__list a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0; /* Начальная ширина 0 */
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease; /* Плавное расширение */
+}
+
+/* Подчеркивание появляется при наведении */
+.header__menu .header__list a:hover::after {
+    width: 100%;
+}
+
+.header__menu .header__list a:hover {
+    opacity: 0.9;
+}
+
+/* Контейнер для кнопок входа и регистрации */
+.header__login {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Стили для кнопок входа/регистрации */
+.header__login a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 25px; /* Скругленные углы */
+    transition: all 0.3s ease;
+}
+
+/* Первая кнопка (Войти) - прозрачная */
+.header__login a:first-child {
+    opacity: 0.9;
+}
+
+.header__login a:first-child:hover {
+    opacity: 1;
+}
+
+/* Вторая кнопка (Регистрация) - с фоном и рамкой */
+.header__login a:last-child {
+    background-color: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+/* Эффект при наведении на кнопку регистрации */
+.header__login a:last-child:hover {
+    background-color: rgba(255,255,255,0.3);
+    transform: translateY(-2px); /* Поднимается вверх */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* ===== HERO SECTION (Главный баннер) ===== */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh; /* 85% высоты экрана */
+    min-height: 600px; /* Минимальная высота */
+    /* Градиентный overlay поверх фонового изображения для лучшей читаемости */
+    background: linear-gradient(rgba(16, 42, 96, 0.4), rgba(102, 102, 227, 0.3)), 
+                url('https://images.unsplash.com/photo-1594737625785-1c9b1b3b2f74?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Скрываем переполнение */
+}
+
+/* Дополнительный радиальный градиент для эффекта виньетки */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(16, 42, 96, 0.3) 100%);
+}
+
+/* Контейнер для контента hero-секции */
+.hero__content {
+    position: relative;
+    z-index: 1; /* Поверх псевдоэлемента ::before */
+    max-width: 800px; /* Ограничиваем ширину для читаемости */
+    padding: 0 20px;
+    animation: fadeInUp 0.8s ease-out; /* Анимация появления */
+}
+
+/* Анимация появления контента снизу вверх */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px); /* Начальная позиция ниже */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Финальная позиция */
+    }
+}
+
+/* Заголовок в hero-секции */
+.hero__content h1 {
+    font-size: 56px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.3); /* Тень для текста */
+    line-height: 1.2;
+}
+
+/* Подзаголовок в hero-секции */
+.hero__content p {
+    font-size: 22px;
+    margin-bottom: 35px;
+    color: white;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.2); /* Легкая тень */
+    font-weight: 400;
+}
+
+/* ===== BUTTONS (Кнопки) ===== */
+.btn {
+    display: inline-block;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, rgb(102,102,227) 0%, rgb(80,80,200) 100%); /* Градиентный фон */
+    color: white;
+    text-decoration: none;
+    border-radius: 50px; /* Полностью скругленные углы (pill-форма) */
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease; /* Плавные переходы для всех свойств */
+    box-shadow: 0 4px 15px rgba(102,102,227,0.4); /* Тень с цветом кнопки */
+    border: none;
+    cursor: pointer; /* Курсор-указатель */
+}
+
+/* Эффект при наведении на кнопку */
+.btn:hover {
+    transform: translateY(-3px); /* Поднимается вверх */
+    box-shadow: 0 6px 20px rgba(102,102,227,0.6); /* Усиленная тень */
+    background: linear-gradient(135deg, rgb(120,120,240) 0%, rgb(100,100,220) 100%); /* Более светлый градиент */
+}
+
+/* Эффект при нажатии на кнопку */
+.btn:active {
+    transform: translateY(-1px); /* Небольшое смещение вниз */
+}
+
+/* ===== SECTIONS (Секции страницы) ===== */
+/* Заголовки секций */
+.section-title {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 700;
+    color: #102A60; /* Темно-синий цвет */
+    margin: 80px 0 50px;
+    position: relative; /* Для псевдоэлемента ::after */
+    padding-bottom: 20px;
+}
+
+/* Декоративная линия под заголовком */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Центрирование */
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, rgb(102,102,227), rgb(80,80,200)); /* Градиентная линия */
+    border-radius: 2px;
+}
+
+/* Общие стили для секций features, courses, reviews */
+.features, .courses, .reviews {
+    padding: 60px 0; /* Вертикальные отступы */
+    background-color: #ffffff; /* Белый фон */
+}
+
+/* Сетка для карточек в секциях */
+.features__grid, .courses__grid, .reviews__grid {
+    display: flex;
+    flex-wrap: wrap; /* Перенос элементов на новую строку */
+    gap: 30px; /* Расстояние между элементами */
+    justify-content: center; /* Центрирование */
+    padding: 0 40px 60px;
+    max-width: 1200px; /* Максимальная ширина контейнера */
+    margin: 0 auto; /* Центрирование контейнера */
+}
+
+/* ===== FEATURE CARDS (Карточки преимуществ) ===== */
+.feature {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); /* Легкий градиент */
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    flex: 1 1 280px; /* Минимальная ширина 280px, растягивается */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08); /* Мягкая тень */
+    transition: all 0.4s ease; /* Плавные переходы */
+    border: 1px solid rgba(102,102,227,0.1); /* Легкая рамка */
+    position: relative;
+    overflow: hidden; /* Скрываем переполнение для эффекта блеска */
+}
+
+/* Эффект "блеска" при наведении */
+.feature::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Начинается слева за пределами карточки */
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(102,102,227,0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+/* Блеск проходит через карточку при наведении */
+.feature:hover::before {
+    left: 100%; /* Заканчивается справа */
+}
+
+/* Эффект при наведении на карточку */
+.feature:hover {
+    transform: translateY(-10px); /* Поднимается вверх */
+    box-shadow: 0 10px 30px rgba(102,102,227,0.2); /* Усиленная тень */
+    border-color: rgba(102,102,227,0.3); /* Более яркая рамка */
+}
+
+/* Иконки в карточках */
+.feature img {
+    margin-bottom: 20px;
+    width: 70px;
+    height: 70px;
+    padding: 15px;
+    background: linear-gradient(135deg, rgba(102,102,227,0.1), rgba(80,80,200,0.1)); /* Фон для иконки */
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+/* Анимация иконки при наведении */
+.feature:hover img {
+    transform: scale(1.1) rotate(5deg); /* Увеличение и небольшой поворот */
+}
+
+/* Заголовок в карточке */
+.feature h3 {
+    color: #102A60;
+    margin-bottom: 15px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* Текст в карточке */
+.feature p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+/* ===== COURSE CARDS (Карточки программ) ===== */
+.course {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    flex: 1 1 250px; /* Минимальная ширина 250px */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.4s ease;
+    border: 2px solid transparent; /* Прозрачная рамка для плавного перехода */
+    cursor: pointer; /* Курсор-указатель */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Анимированная линия внизу карточки */
+.course::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, rgb(102,102,227), rgb(80,80,200));
+    transform: scaleX(0); /* Начальная ширина 0 */
+    transition: transform 0.3s ease;
+}
+
+/* Линия появляется при наведении */
+.course:hover::after {
+    transform: scaleX(1); /* Полная ширина */
+}
+
+/* Эффект при наведении на карточку программы */
+.course:hover {
+    transform: translateY(-8px); /* Поднимается вверх */
+    box-shadow: 0 10px 30px rgba(102,102,227,0.25);
+    border-color: rgba(102,102,227,0.3); /* Появляется цветная рамка */
+}
+
+/* Иконки программ */
+.course img {
+    margin-bottom: 20px;
+    width: 70px;
+    height: 70px;
+    transition: transform 0.3s ease;
+}
+
+/* Увеличение иконки при наведении */
+.course:hover img {
+    transform: scale(1.15); /* Увеличение на 15% */
+}
+
+/* Заголовок программы */
+.course h3 {
+    color: #102A60;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* ===== REVIEW CARDS (Карточки отзывов) ===== */
+.review {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 20px;
+    padding: 35px 30px;
+    text-align: center;
+    flex: 1 1 300px; /* Минимальная ширина 300px */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.4s ease;
+    border-left: 4px solid rgb(102,102,227); /* Цветная левая граница */
+    position: relative;
+}
+
+/* Декоративная кавычка в углу */
+.review::before {
+    content: '"';
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 60px;
+    color: rgba(102,102,227,0.2); /* Полупрозрачная кавычка */
+    font-family: Georgia, serif; /* Классический шрифт для кавычек */
+    line-height: 1;
+}
+
+/* Эффект при наведении на отзыв */
+.review:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(102,102,227,0.2);
+}
+
+/* Аватар пользователя в отзыве */
+.review img {
+    margin-bottom: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Круглая форма */
+    border: 3px solid rgb(102,102,227); /* Цветная рамка */
+    padding: 5px;
+    background: white;
+}
+
+/* Текст отзыва */
+.review p {
+    font-style: italic; /* Курсив для цитаты */
+    margin-bottom: 15px;
+    color: #555;
+    font-size: 16px;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1; /* Поверх декоративной кавычки */
+}
+
+/* Имя автора отзыва */
+.review span {
+    font-weight: 600;
+    color: #102A60;
+    font-size: 14px;
+}
+
+/* ===== CTA SECTION (Призыв к действию) ===== */
+.cta {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(135deg, rgb(102,102,227) 0%, rgb(80,80,200) 100%); /* Градиентный фон */
+    color: white;
+    position: relative;
+    overflow: hidden; /* Скрываем переполнение для анимации */
+}
+
+/* Анимированный фоновый эффект */
+.cta::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite; /* Бесконечное вращение */
+}
+
+/* Анимация вращения фонового эффекта */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Заголовок в CTA секции */
+.cta h2 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1; /* Поверх анимированного фона */
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.2); /* Тень для текста */
+}
+
+/* Кнопка в CTA секции (белая на цветном фоне) */
+.cta .btn {
+    background: white;
+    color: rgb(102,102,227); /* Цвет текста совпадает с фоном секции */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 1; /* Поверх анимированного фона */
+}
+
+/* Эффект при наведении на кнопку в CTA */
+.cta .btn:hover {
+    background: #f0f0f0; /* Светло-серый фон */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3); /* Усиленная тень */
+}
+
+/* ===== FOOTER (Подвал сайта) ===== */
+.footer {
+    background: linear-gradient(135deg, #102A60 0%, #1a3a7a 100%); /* Темный градиент */
+    color: white;
+    text-align: center;
+    padding: 50px 20px 30px;
+    font-size: 14px;
+}
+
+/* Общие стили для параграфов в футере */
+.footer p {
+    margin: 10px 0;
+    opacity: 0.9; /* Легкая прозрачность */
+}
+
+/* Первый параграф (контакты) - более крупный */
+.footer p:first-child {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Последний параграф (копирайт) - меньший размер */
+.footer p:last-child {
+    margin-top: 20px;
+    opacity: 0.7; /* Более прозрачный */
+    font-size: 12px;
+}
+
+/* ===== RESPONSIVE (Адаптивный дизайн) ===== */
+/* Стили для планшетов и небольших экранов (до 768px) */
+@media (max-width: 768px) {
+    .header {
+        padding: 15px 20px;
+        flex-wrap: wrap;
+    }
+    
+    .header__menu-logo {
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    
+    .header__menu .header__list {
+        gap: 15px;
+        font-size: 14px;
+    }
+    
+    .header__login {
+        gap: 10px;
+    }
+    
+    .header__login a {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+    
+    .hero {
+        height: 70vh;
+        min-height: 500px;
+    }
+    
+    .hero__content h1 {
+        font-size: 36px;
+    }
+    
+    .hero__content p {
+        font-size: 18px;
+    }
+    
+    .section-title {
+        font-size: 32px;
+        margin: 50px 0 30px;
+    }
+    
+    .features__grid, .courses__grid, .reviews__grid {
+        padding: 0 20px 40px;
+        gap: 20px;
+    }
+    
+    .feature, .course, .review {
+        flex: 1 1 100%;
+    }
+    
+    .cta {
+        padding: 60px 20px;
+    }
+    
+    .cta h2 {
+        font-size: 28px;
+    }
+    
+    .btn {
+        padding: 14px 30px;
+        font-size: 14px;
+    }
+}
+
+/* Стили для мобильных устройств (до 480px) */
+@media (max-width: 480px) {
+    /* Скрываем навигационное меню на очень маленьких экранах */
+    .header__menu {
+        display: none;
+    }
+    
+    /* Уменьшаем размер заголовка в hero-секции */
+    .hero__content h1 {
+        font-size: 28px;
+    }
+    
+    /* Уменьшаем размер подзаголовка */
+    .hero__content p {
+        font-size: 16px;
+    }
+    
+    /* Уменьшаем размер заголовков секций */
+    .section-title {
+        font-size: 26px;
+    }
+}
